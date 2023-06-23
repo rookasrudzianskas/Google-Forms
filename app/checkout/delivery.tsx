@@ -23,8 +23,8 @@ export default function DeliveryDetails () {
         />
         <Card.Content style={{gap: 10}}>
           <TextInput
-            label="Name"
-            placeholder="Name"
+            label="City"
+            placeholder="City"
             // value={text}
             // onChangeText={text => setText(text)}
             style={{
@@ -33,8 +33,18 @@ export default function DeliveryDetails () {
           />
 
           <TextInput
-            label="Email"
-            placeholder="hey@byrookas.com"
+            label="Postal code"
+            placeholder="Postal code"
+            // value={text}
+            // onChangeText={text => setText(text)}
+            style={{
+              backgroundColor: theme.colors.background
+            }}
+          />
+
+          <TextInput
+            label="Address"
+            placeholder="Mars Street 1-1"
             // value={text}
             // onChangeText={text => setText(text)}
             style={{
