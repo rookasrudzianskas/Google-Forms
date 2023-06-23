@@ -41,14 +41,14 @@ export default function PersonalDetails () {
           <Controller
             control={control}
             name="name"
-            render={({field: {value, onChange, onBlur}}) => (
+            render={({field: {value, onChange, onBlur}, fieldState: {error, invalid}}) => (
               <TextInput
                 label="Name"
                 placeholder="Name"
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
-                error={errors.name}
+                error={invalid}
                 style={{
                   backgroundColor: theme.colors.background
                 }}
