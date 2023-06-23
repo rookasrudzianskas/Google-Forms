@@ -12,4 +12,6 @@ export const DeliveryInfoSchema = z.object({
   postalCode: z.string().min(1),
   address: z.string().min(1),
   shippingMethod: z.enum(["free", "fast", "rocket"]),
-})
+});
+
+export type DeliveryInfo = z.infer<typeof DeliveryInfoSchema>;
