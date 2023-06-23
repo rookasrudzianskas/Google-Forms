@@ -2,7 +2,7 @@
 import {View, TouchableOpacity, ScrollView} from "react-native";
 import React from "react";
 import {useRouter} from "expo-router";
-import {Avatar, Button, Card, Text, TextInput, useTheme, withTheme} from 'react-native-paper';
+import {Avatar, Button, Card, HelperText, Text, TextInput, useTheme, withTheme} from 'react-native-paper';
 import {useForm, Controller} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {PersonalInfoSchema, PersonalInfo} from "../../src/schema/checkout.schema";
@@ -42,17 +42,22 @@ export default function PersonalDetails () {
             control={control}
             name="name"
             render={({field: {value, onChange, onBlur}, fieldState: {error, invalid}}) => (
-              <TextInput
-                label="Name"
-                placeholder="Name"
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                error={invalid}
-                style={{
-                  backgroundColor: theme.colors.background
-                }}
-              />
+              <View>
+                <TextInput
+                  label="Name"
+                  placeholder="Name"
+                  value={value}
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  error={invalid}
+                  style={{
+                    backgroundColor: theme.colors.background
+                  }}
+                />
+                <HelperText type="error" visible={invalid}>
+                  {error?.message}
+                </HelperText>
+              </View>
             )}
           />
 
