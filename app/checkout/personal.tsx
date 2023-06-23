@@ -2,8 +2,8 @@
 import {ScrollView} from "react-native";
 import React from "react";
 import {useRouter} from "expo-router";
-import {Button, Card, TextInput, useTheme} from 'react-native-paper';
-import {useForm, Controller} from "react-hook-form";
+import {Button, Card, useTheme} from 'react-native-paper';
+import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {PersonalInfoSchema, PersonalInfo} from "../../src/schema/checkout.schema";
 import ControlledInput from "../../src/components/ControlledInput";

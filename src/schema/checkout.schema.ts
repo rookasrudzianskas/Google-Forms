@@ -5,13 +5,11 @@ export const PersonalInfoSchema = z.object({
   email: z.string().email(),
 });
 
-const ex1 = {
-  name: "John Doe",
-  email: "hi@rokas.com",
-}
-
 export type PersonalInfo = z.infer<typeof PersonalInfoSchema>;
 
-const info: PersonalInfo = PersonalInfoSchema.parse(ex1);
-
-console.log(info);
+export const DeliveryInfoSchema = z.object({
+  city: z.string().min(1),
+  postalCode: z.string().min(1),
+  address: z.string().min(1),
+  shippingMethod: z.enum(["free", "fast", "rocket"]),
+})
