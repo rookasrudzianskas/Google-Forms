@@ -6,6 +6,7 @@ import {Button, Card, RadioButton, TextInput, useTheme} from "react-native-paper
 import {useForm} from "react-hook-form";
 import {DeliveryInfo, DeliveryInfoSchema} from "../../src/schema/checkout.schema";
 import {zodResolver} from "@hookform/resolvers/zod";
+import ControlledInput from "../../src/components/ControlledInput";
 
 export default function DeliveryDetails () {
   const {
@@ -37,34 +38,23 @@ export default function DeliveryDetails () {
           titleVariant={'titleLarge'}
         />
         <Card.Content style={{gap: 10}}>
-          <TextInput
+          <ControlledInput
+            control={control}
+            name="city"
             label="City"
-            placeholder="City"
-            // value={text}
-            // onChangeText={text => setText(text)}
-            style={{
-              backgroundColor: theme.colors.background
-            }}
           />
 
-          <TextInput
-            label="Postal code"
-            placeholder="Postal code"
-            // value={text}
-            // onChangeText={text => setText(text)}
-            style={{
-              backgroundColor: theme.colors.background
-            }}
+          <ControlledInput
+            control={control}
+            name="postalCode"
+            label="Postal Code"
           />
 
-          <TextInput
+          <ControlledInput
+            control={control}
+            name="address"
             label="Address"
-            placeholder="Mars Street 1-1"
-            // value={text}
-            // onChangeText={text => setText(text)}
-            style={{
-              backgroundColor: theme.colors.background
-            }}
+            placeholder="Name"
           />
 
 
@@ -89,7 +79,7 @@ export default function DeliveryDetails () {
           </RadioButton.Group>
         </Card.Content>
       </Card>
-      <Button mode={'contained'} onPress={nextPage} theme={{roundness: 1}}>
+      <Button mode={'contained'} onPress={handleSubmit(nextPage)} theme={{roundness: 1}}>
         Next
       </Button>
     </ScrollView>
