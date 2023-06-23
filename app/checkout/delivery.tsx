@@ -1,10 +1,11 @@
 // @ts-nocheck
 import {View, Text, TouchableOpacity} from "react-native";
-import React from "react";
+import React, {useState} from "react";
 import {useRouter} from "expo-router";
-import {Button, Card, TextInput, useTheme} from "react-native-paper";
+import {Button, Card, RadioButton, TextInput, useTheme} from "react-native-paper";
 
 export default function DeliveryDetails () {
+  const [shipping, setShipping] = useState('free');
   const router = useRouter();
   const theme = useTheme();
 
@@ -13,9 +14,12 @@ export default function DeliveryDetails () {
   }
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 space-y-5">
       <Card style={{
         backgroundColor: theme.colors.background
+      }}
+      theme={{
+        roundness: 1
       }}>
         <Card.Title
           title="Delivery Address"
@@ -51,6 +55,27 @@ export default function DeliveryDetails () {
               backgroundColor: theme.colors.background
             }}
           />
+
+
+        </Card.Content>
+      </Card>
+
+      <Card style={{
+        backgroundColor: theme.colors.background
+      }}
+            theme={{
+              roundness: 1
+            }}>
+        <Card.Title
+          title="Delivery Options"
+          titleVariant={'titleLarge'}
+        />
+        <Card.Content style={{gap: 10}}>
+          <RadioButton.Group onValueChange={newValue => setShipping(newValue)} value={shipping}>
+            <RadioButton.Item label="Free Delivery" value="free" />
+            <RadioButton.Item label="Fast Delivery" value="fast" />
+            <RadioButton.Item label="Rocket Delivery" value="rocket" />
+          </RadioButton.Group>
         </Card.Content>
       </Card>
       <Button mode={'contained'} onPress={nextPage} theme={{roundness: 1}}>

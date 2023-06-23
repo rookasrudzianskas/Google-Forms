@@ -15,7 +15,11 @@ export default function PersonalDetails () {
     <View className="flex-1" style={{gap: 15}}>
       <Card style={{
         backgroundColor: theme.colors.background
-      }}>
+      }}
+      theme={{
+        roundness: 1
+      }}
+      >
         <Card.Title
           title="Personal Information"
           titleVariant={'titleLarge'}
