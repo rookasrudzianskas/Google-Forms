@@ -12,7 +12,7 @@ export default function PersonalDetails () {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm({
+  } = useForm<PersonalInfo>({
     resolver: zodResolver(PersonalInfoSchema),
   });
 
