@@ -2,8 +2,8 @@
 import {View, Text, TouchableOpacity, ScrollView} from "react-native";
 import React, {useState} from "react";
 import {useRouter} from "expo-router";
-import {Button, Card, RadioButton, TextInput, useTheme} from "react-native-paper";
-import {useForm} from "react-hook-form";
+import {Button, Card, HelperText, RadioButton, TextInput, useTheme} from "react-native-paper";
+import {Controller, useForm} from "react-hook-form";
 import {DeliveryInfo, DeliveryInfoSchema} from "../../src/schema/checkout.schema";
 import {zodResolver} from "@hookform/resolvers/zod";
 import ControlledInput from "../../src/components/ControlledInput";
@@ -15,13 +15,14 @@ export default function DeliveryDetails () {
     formState: {errors},
   } = useForm<DeliveryInfo>({
     resolver: zodResolver(DeliveryInfoSchema),
+    defaultValues: {
+      shipping: 'fast'
+    }
   });
-
-  const [shipping, setShipping] = useState('free');
   const router = useRouter();
   const theme = useTheme();
 
-  const nextPage = () => {
+  const nextPage = (data) => {
     router.push('/checkout/payment');
   }
 
@@ -72,11 +73,22 @@ export default function DeliveryDetails () {
           titleVariant={'titleLarge'}
         />
         <Card.Content style={{gap: 10}}>
-          <RadioButton.Group onValueChange={newValue => setShipping(newValue)} value={shipping}>
-            <RadioButton.Item label="Free Delivery" value="free" />
-            <RadioButton.Item label="Fast Delivery" value="fast" />
-            <RadioButton.Item label="Rocket Delivery" value="rocket" />
-          </RadioButton.Group>
+          <Controller
+            name="shipping"
+            control={control}
+            render={({field: {value, onChange}, fieldState: {error, invalid}}) => (
+             <View>
+               <HelperText type="error" visible={invalid}>
+                 {error?.message}
+               </HelperText>
+               <RadioButton.Group onValueChange={(value) => onChange(value)} value={value}>
+                 <RadioButton.Item label="Free Delivery" value="free" />
+                 <RadioButton.Item label="Fast Delivery" value="fast" />
+                 <RadioButton.Item label="Rocket Delivery" value="rocket" />
+               </RadioButton.Group>
+             </View>
+            )}
+          />
         </Card.Content>
       </Card>
       <Button mode={'contained'} onPress={handleSubmit(nextPage)} theme={{roundness: 1}}>
