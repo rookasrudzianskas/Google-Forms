@@ -1,11 +1,12 @@
 // @ts-nocheck
-import {View, TouchableOpacity, ScrollView} from "react-native";
+import {ScrollView} from "react-native";
 import React from "react";
 import {useRouter} from "expo-router";
-import {Avatar, Button, Card, HelperText, Text, TextInput, useTheme, withTheme} from 'react-native-paper';
+import {Button, Card, TextInput, useTheme} from 'react-native-paper';
 import {useForm, Controller} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {PersonalInfoSchema, PersonalInfo} from "../../src/schema/checkout.schema";
+import ControlledInput from "../../src/components/ControlledInput";
 
 export default function PersonalDetails () {
   const {
@@ -19,7 +20,6 @@ export default function PersonalDetails () {
   const router = useRouter();
   const theme = useTheme();
   const nextPage = (data) => {
-    console.warn(data)
     router.push('/checkout/delivery');
   }
 
@@ -38,38 +38,20 @@ export default function PersonalDetails () {
         />
         <Card.Content style={{gap: 10}}>
 
-          <Controller
+          <ControlledInput
             control={control}
             name="name"
-            render={({field: {value, onChange, onBlur}, fieldState: {error, invalid}}) => (
-              <View>
-                <TextInput
-                  label="Name"
-                  placeholder="Name"
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  error={invalid}
-                  style={{
-                    backgroundColor: theme.colors.background
-                  }}
-                />
-                <HelperText type="error" visible={invalid}>
-                  {error?.message}
-                </HelperText>
-              </View>
-            )}
+            label="Name"
+            placeholder="Name"
           />
 
-          <TextInput
+          <ControlledInput
+            control={control}
+            name="email"
             label="Email"
-            placeholder="hey@byrookas.com"
-            // value={text}
-            // onChangeText={text => setText(text)}
-            style={{
-              backgroundColor: theme.colors.background
-            }}
+            placeholder="hey@email.com"
           />
+
         </Card.Content>
       </Card>
 

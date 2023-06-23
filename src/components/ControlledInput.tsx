@@ -1,6 +1,6 @@
 //@ts-nocheck
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {HelperText, TextInput, useTheme} from "react-native-paper";
 import {Control, Controller} from "react-hook-form";
 import {useRouter} from "expo-router";
