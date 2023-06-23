@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {View, TouchableOpacity} from "react-native";
+import {View, TouchableOpacity, ScrollView} from "react-native";
 import React from "react";
 import {useRouter} from "expo-router";
 import {Avatar, Button, Card, Text, TextInput, useTheme, withTheme} from 'react-native-paper';
@@ -12,7 +12,7 @@ export default function PersonalDetails () {
   }
 
   return (
-    <View className="flex-1" style={{gap: 15}}>
+    <ScrollView contentContainerStyle={{paddingBottom: 100, gap: 15}} showsVerticalScrollIndicator={false} className="flex-1">
       <Card style={{
         backgroundColor: theme.colors.background
       }}
@@ -50,6 +50,6 @@ export default function PersonalDetails () {
       <Button mode={'contained'} onPress={nextPage} theme={{roundness: 1}}>
         Next
       </Button>
-    </View>
+    </ScrollView>
   )
 }

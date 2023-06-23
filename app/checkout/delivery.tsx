@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {View, Text, TouchableOpacity} from "react-native";
+import {View, Text, TouchableOpacity, ScrollView} from "react-native";
 import React, {useState} from "react";
 import {useRouter} from "expo-router";
 import {Button, Card, RadioButton, TextInput, useTheme} from "react-native-paper";
@@ -14,7 +14,7 @@ export default function DeliveryDetails () {
   }
 
   return (
-    <View className="flex-1 space-y-5">
+    <ScrollView contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false} className="flex-1 space-y-5">
       <Card style={{
         backgroundColor: theme.colors.background
       }}
@@ -22,7 +22,7 @@ export default function DeliveryDetails () {
         roundness: 1
       }}>
         <Card.Title
-          title="Delivery Address"
+          title="Delivery Information"
           titleVariant={'titleLarge'}
         />
         <Card.Content style={{gap: 10}}>
@@ -81,6 +81,6 @@ export default function DeliveryDetails () {
       <Button mode={'contained'} onPress={nextPage} theme={{roundness: 1}}>
         Next
       </Button>
-    </View>
+    </ScrollView>
   )
 }
