@@ -14,7 +14,7 @@ export default function DeliveryDetails () {
   }
 
   return (
-    <ScrollView contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false} className="flex-1 space-y-5">
+    <ScrollView contentContainerStyle={{paddingBottom: 100, gap: 15, maxWidth: 500, width: '100%', alignSelf: 'center'}} showsVerticalScrollIndicator={false} className="flex-1 space-y-5">
       <Card style={{
         backgroundColor: theme.colors.background
       }}

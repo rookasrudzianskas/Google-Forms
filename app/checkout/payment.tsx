@@ -15,7 +15,7 @@ export default function PaymentDetails () {
   }
 
   return (
-    <ScrollView contentContainerStyle={{paddingBottom: 100, gap: 15}} showsVerticalScrollIndicator={false} className="flex-1">
+    <ScrollView contentContainerStyle={{paddingBottom: 100, gap: 15, maxWidth: 500, width: '100%', alignSelf: 'center'}} showsVerticalScrollIndicator={false} className="flex-1">
       <Card style={{
         backgroundColor: theme.colors.background
       }}
