@@ -2,15 +2,21 @@
 import {View, Text, TouchableOpacity} from "react-native";
 import React from "react";
 import {useRouter} from "expo-router";
+import {Button} from "react-native-paper";
 
 export default function DeliveryDetails () {
   const router = useRouter();
+
+  const nextPage = () => {
+    router.push('/checkout/payment');
+  }
+
   return (
-    <View className="flex-1 items-center justify-center">
+    <View className="flex-1">
       <Text className="font-semibold text-2xl">Delivery Details</Text>
-      <TouchableOpacity onPress={() => router.push('/checkout/payment')}>
-        <Text className="text-xl text-gray-500 font-[500]">Go To Payment</Text>
-      </TouchableOpacity>
+      <Button mode={'contained'} onPress={nextPage} theme={{roundness: 1}}>
+        Next
+      </Button>
     </View>
   )
 }
