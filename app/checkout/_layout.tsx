@@ -1,9 +1,10 @@
 import {Stack} from "expo-router";
 import {StatusBar} from "expo-status-bar";
+import CheckoutContextProvider from "../../src/contexts/checkoutContext";
 
 export default function CheckoutStack () {
   return (
-    <>
+    <CheckoutContextProvider>
       <Stack screenOptions={{
         contentStyle: {
           padding: 15,
@@ -22,6 +23,6 @@ export default function CheckoutStack () {
         <Stack.Screen name={"payment"} options={{ title: "Payment Information"}} />
       </Stack>
       <StatusBar style="light" />
-    </>
+    </CheckoutContextProvider>
   )
 }
