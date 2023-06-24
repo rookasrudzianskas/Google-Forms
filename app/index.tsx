@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Text, TouchableOpacity, View} from "react-native";
 import {StatusBar} from "expo-status-bar";
 import {useRouter} from "expo-router";
 

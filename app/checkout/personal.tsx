@@ -16,10 +16,6 @@ export default function PersonalDetails () {
     formState: {errors},
   } = useForm<PersonalInfo>({
     resolver: zodResolver(PersonalInfoSchema),
-    defaultValues: {
-      name: 'Rokas',
-      email: 'hey@gmai.com',
-    }
   });
   const {setPersonal} = useCheckoutContext();
 

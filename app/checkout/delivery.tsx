@@ -1,6 +1,6 @@
 // @ts-nocheck
 import {View, ScrollView} from "react-native";
-import React, {useState} from "react";
+import React from "react";
 import {useRouter} from "expo-router";
 import {Button, Card, HelperText, RadioButton, useTheme} from "react-native-paper";
 import {Controller, useForm} from "react-hook-form";
@@ -17,9 +17,6 @@ export default function DeliveryDetails () {
   } = useForm<DeliveryInfo>({
     resolver: zodResolver(DeliveryInfoSchema),
     defaultValues: {
-      city: 'Vilnius',
-      address: 'Rokas',
-      postalCode: '12345',
       shipping: 'fast'
     }
   });
