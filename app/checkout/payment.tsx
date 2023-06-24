@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {View, ScrollView} from "react-native";
+import {View, ScrollView, Alert} from "react-native";
 import React from "react";
 import {Button, Card, Checkbox, useTheme} from "react-native-paper";
 import {useRouter} from "expo-router";
@@ -7,6 +7,7 @@ import {Controller, useForm} from "react-hook-form";
 import {PaymentInfo, PaymentInfoSchema} from "../../src/schema/checkout.schema";
 import {zodResolver} from "@hookform/resolvers/zod";
 import ControlledInput from "../../src/components/ControlledInput";
+import {useCheckoutContext} from "../../src/contexts/checkoutContext";
 
 export default function PaymentDetails () {
   const {
@@ -19,12 +20,19 @@ export default function PaymentDetails () {
       saveInfo: true
     }
   });
+  const {setPayment, onSubmitAll} = useCheckoutContext();
 
   const router = useRouter();
   const theme = useTheme();
 
-  const nextPage = () => {
-    router.push('/')
+  const nextPage = async (data: PaymentInfo) => {
+    // setPayment(data);
+    const success = await onSubmitAll(data);
+    if(success) {
+      router.push('/');
+    } else {
+      Alert.alert('Something went wrong', 'Please try again later');
+    }
   }
 
   return (

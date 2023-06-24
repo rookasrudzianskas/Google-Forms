@@ -5,12 +5,14 @@ type CheckoutContextData = {
   setPersonal: React.Dispatch<React.SetStateAction<PersonalInfo | null>>;
   setDelivery: React.Dispatch<React.SetStateAction<DeliveryInfo | null>>;
   setPayment: React.Dispatch<React.SetStateAction<PaymentInfo | null>>;
+  onSubmitAll: (paymentInfo: PaymentInfo) => Promise<boolean>
 };
 
 const CheckoutContext = createContext<CheckoutContextData>({
   setPersonal: () => {},
   setDelivery: () => {},
   setPayment: () => {},
+  onSubmitAll: () => Promise.resolve(false)
 });
 
 export default function CheckoutContextProvider({children}) {
@@ -18,15 +20,26 @@ export default function CheckoutContextProvider({children}) {
   const [delivery, setDelivery] = useState<DeliveryInfo | null>(null);
   const [payment, setPayment] = useState<PaymentInfo | null>(null);
 
+  const onSubmitAll = async (paymentInfo: PaymentInfo) => {
+    setPayment(paymentInfo);
+    console.warn('submit all');
+    console.log(personal);
+    console.log(delivery);
+    console.log(paymentInfo);
+    return true;
+  }
+
   return (
     <CheckoutContext.Provider
       value={{
+        // @ts-ignore
         personal,
         setPersonal,
         delivery,
         setDelivery,
         payment,
-        setPayment
+        setPayment,
+        onSubmitAll
       }}
     >
       {children}

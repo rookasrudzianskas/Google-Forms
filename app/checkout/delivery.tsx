@@ -7,6 +7,7 @@ import {Controller, useForm} from "react-hook-form";
 import {DeliveryInfo, DeliveryInfoSchema} from "../../src/schema/checkout.schema";
 import {zodResolver} from "@hookform/resolvers/zod";
 import ControlledInput from "../../src/components/ControlledInput";
+import {useCheckoutContext} from "../../src/contexts/checkoutContext";
 
 export default function DeliveryDetails () {
   const {
@@ -19,10 +20,12 @@ export default function DeliveryDetails () {
       shipping: 'fast'
     }
   });
+  const {setDelivery} = useCheckoutContext();
   const router = useRouter();
   const theme = useTheme();
 
-  const nextPage = (data) => {
+  const nextPage = (data: DeliveryInfo) => {
+    setDelivery(data);
     router.push('/checkout/payment');
   }
 
