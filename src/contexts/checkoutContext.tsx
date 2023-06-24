@@ -17,7 +17,12 @@ export default function CheckoutContextProvider({children}) {
   return (
     <CheckoutContext.Provider
       value={{
-
+        personal,
+        setPersonal,
+        delivery,
+        setDelivery,
+        payment,
+        setPayment
       }}
     >
       {children}
