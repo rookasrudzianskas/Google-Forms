@@ -36,6 +36,7 @@ export const PaymentInfoSchema = z.object({
 
 export type PaymentInfo = z.infer<typeof PaymentInfoSchema>;
 
+// @ts-ignore
 export const CheckoutInfoSchema = DeliveryInfoSchema.merge(PersonalInfoSchema).merge(PaymentInfoSchema);
 
 export type CheckoutData = z.infer<typeof CheckoutInfoSchema>

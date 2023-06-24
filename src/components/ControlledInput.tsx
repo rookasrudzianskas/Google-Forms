@@ -3,7 +3,6 @@ import React from 'react';
 import {View} from 'react-native';
 import {HelperText, TextInput, useTheme} from "react-native-paper";
 import {Control, Controller} from "react-hook-form";
-import {useRouter} from "expo-router";
 
 type ControlledInputProps = {
   control: Control;
@@ -12,7 +11,6 @@ type ControlledInputProps = {
 
 const ControlledInput = ({control, name, ...textInputProps}: ControlledInputProps) => {
   const theme = useTheme();
-  const router = useRouter();
 
   return (
     <Controller
