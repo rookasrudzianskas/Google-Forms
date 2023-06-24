@@ -3,9 +3,10 @@ import {View, Text, ScrollView} from "react-native";
 import React, {useState} from "react";
 import {Button, Card, Checkbox, TextInput, useTheme} from "react-native-paper";
 import {useRouter} from "expo-router";
-import {useForm} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import {PaymentInfo, PaymentInfoSchema} from "../../src/schema/checkout.schema";
 import {zodResolver} from "@hookform/resolvers/zod";
+import ControlledInput from "../../src/components/ControlledInput";
 
 export default function PaymentDetails () {
   const {
@@ -41,53 +42,47 @@ export default function PaymentDetails () {
           titleVariant={'titleLarge'}
         />
         <Card.Content style={{gap: 10}}>
-          <TextInput
-            label="Card number"
+          <ControlledInput
+            control={control}
+            name="number"
+            label="Card Number"
             placeholder="4242 4242 4242 4242"
-            // value={text}
-            // onChangeText={text => setText(text)}
-            style={{
-              backgroundColor: theme.colors.background
-            }}
           />
 
           <View className="flex flex-row items-center w-full space-x-4">
-            <TextInput
+            <ControlledInput
+              control={control}
+              name="expirationDate"
               label="Expiration date"
-              placeholder="06/29"
-              // value={text}
-              // onChangeText={text => setText(text)}
-              style={{
-                backgroundColor: theme.colors.background,
-                flex: 3,
-              }}
+              placeholder="mm/yyyy"
             />
-
-            <TextInput
+            <ControlledInput
+              control={control}
+              name="securityCode"
               label="Security code"
               placeholder="111"
-              // value={text}
-              // onChangeText={text => setText(text)}
-              style={{
-                backgroundColor: theme.colors.background,
-                flex: 2,
-              }}
             />
           </View>
 
-          <Checkbox.Item
-            label={"Save card for future purchases"}
-            position={'leading'}
-            status={checked ? 'checked' : 'unchecked'}
-            onPress={() => {
-              setChecked(!checked);
-            }}
+          <Controller
+            control={control}
+            name={'saveInfo'}
+            render={({field: {value, onChange}}) => (
+              <Checkbox.Item
+                label={"Save card for future purchases"}
+                position={'leading'}
+                status={value ? 'checked' : 'unchecked'}
+                onPress={() => {
+                  onChange(!value);
+                }}
+              />
+            )}
           />
 
         </Card.Content>
       </Card>
 
-      <Button mode={'contained'} onPress={nextPage} theme={{roundness: 1}}>
+      <Button mode={'contained'} onPress={handleSubmit(nextPage)} theme={{roundness: 1}}>
         Next
       </Button>
     </ScrollView>

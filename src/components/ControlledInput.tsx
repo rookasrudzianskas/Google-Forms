@@ -19,7 +19,7 @@ const ControlledInput = ({control, name, ...textInputProps}: ControlledInputProp
       control={control}
       name={name}
       render={({field: {value, onChange, onBlur}, fieldState: {error, invalid}}) => (
-        <View>
+        <View style={{flex: 1}}>
           <TextInput
             value={value}
             onChangeText={onChange}
