@@ -18,7 +18,7 @@ export type DeliveryInfo = z.infer<typeof DeliveryInfoSchema>;
 
 export const PaymentInfoSchema = z.object({
   number: z.string().min(1),
-  expirationDate: z.string().min(1),
+  expirationDate: z.string().regex(/^(0[1-9]|1[0-2])\/\d{4}$/),
   securityCode: z.coerce.number().gte(100).lte(999),
   saveInfo: z.boolean(),
 });
