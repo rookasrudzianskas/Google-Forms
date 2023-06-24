@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const PersonalInfoSchema = z.object({
-  name: z.string().min(1),
+  name: z.string({required_error: 'Name is required here'}).min(1),
   email: z.string().email(),
 });
 
@@ -19,8 +19,12 @@ export type DeliveryInfo = z.infer<typeof DeliveryInfoSchema>;
 export const PaymentInfoSchema = z.object({
   number: z.string().min(1),
   expirationDate: z.string().min(1),
-  securityCode: z.string().min(1),
+  securityCode: z.coerce.number().gte(100).lte(999),
   saveInfo: z.boolean(),
 });
 
 export type PaymentInfo = z.infer<typeof PaymentInfoSchema>;
+
+export const CheckoutInfoSchema = PersonalInfoSchema.merge(DeliveryInfoSchema).merge(PaymentInfoSchema);
+
+export type CheckoutData = z.infer<typeof CheckoutInfoSchema>

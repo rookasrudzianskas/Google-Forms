@@ -17,6 +17,9 @@ export default function DeliveryDetails () {
   } = useForm<DeliveryInfo>({
     resolver: zodResolver(DeliveryInfoSchema),
     defaultValues: {
+      city: 'Vilnius',
+      address: 'Rokas',
+      postalCode: '12345',
       shipping: 'fast'
     }
   });

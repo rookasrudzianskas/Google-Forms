@@ -17,7 +17,10 @@ export default function PaymentDetails () {
   } = useForm<PaymentInfo>({
     resolver: zodResolver(PaymentInfoSchema),
     defaultValues: {
-      saveInfo: true
+      saveInfo: true,
+      number: '4242 4242 4242 4242',
+      expirationDate: '12/22',
+      securityCode: '111',
     }
   });
   const {setPayment, onSubmitAll} = useCheckoutContext();

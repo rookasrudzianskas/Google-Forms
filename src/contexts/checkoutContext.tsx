@@ -1,5 +1,5 @@
 import {createContext, useContext, useState} from "react";
-import {DeliveryInfo, PaymentInfo, PersonalInfo} from "../schema/checkout.schema";
+import {CheckoutData, DeliveryInfo, PaymentInfo, PersonalInfo} from "../schema/checkout.schema";
 
 type CheckoutContextData = {
   setPersonal: React.Dispatch<React.SetStateAction<PersonalInfo | null>>;
@@ -22,10 +22,14 @@ export default function CheckoutContextProvider({children}) {
 
   const onSubmitAll = async (paymentInfo: PaymentInfo) => {
     setPayment(paymentInfo);
+
+    const checkoutData: CheckoutData = {
+      ...personal,
+      ...delivery,
+      ...paymentInfo,
+    }
     console.warn('submit all');
-    console.log(personal);
-    console.log(delivery);
-    console.log(paymentInfo);
+    console.log(checkoutData)
     return true;
   }
 
