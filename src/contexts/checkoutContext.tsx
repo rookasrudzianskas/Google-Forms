@@ -2,7 +2,9 @@ import {createContext, useContext, useState} from "react";
 import {DeliveryInfo, PaymentInfo, PersonalInfo} from "../schema/checkout.schema";
 
 type CheckoutContextData = {
-
+  setPersonal: React.Dispatch<React.SetStateAction<PersonalInfo | null>>;
+  setDelivery: React.Dispatch<React.SetStateAction<DeliveryInfo | null>>;
+  setPayment: React.Dispatch<React.SetStateAction<PaymentInfo | null>>;
 };
 
 const CheckoutContext = createContext<CheckoutContextData>({
