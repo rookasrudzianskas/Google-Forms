@@ -3,8 +3,22 @@ import {View, Text, ScrollView} from "react-native";
 import React, {useState} from "react";
 import {Button, Card, Checkbox, TextInput, useTheme} from "react-native-paper";
 import {useRouter} from "expo-router";
+import {useForm} from "react-hook-form";
+import {PaymentInfo, PaymentInfoSchema} from "../../src/schema/checkout.schema";
+import {zodResolver} from "@hookform/resolvers/zod";
 
 export default function PaymentDetails () {
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<PaymentInfo>({
+    resolver: zodResolver(PaymentInfoSchema),
+    defaultValues: {
+      saveInfo: true
+    }
+  });
+
   const router = useRouter();
   const theme = useTheme();
   const [checked, setChecked] = useState(true);

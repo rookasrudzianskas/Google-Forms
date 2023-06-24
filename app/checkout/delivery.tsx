@@ -1,8 +1,8 @@
 // @ts-nocheck
-import {View, Text, TouchableOpacity, ScrollView} from "react-native";
+import {View, ScrollView} from "react-native";
 import React, {useState} from "react";
 import {useRouter} from "expo-router";
-import {Button, Card, HelperText, RadioButton, TextInput, useTheme} from "react-native-paper";
+import {Button, Card, HelperText, RadioButton, useTheme} from "react-native-paper";
 import {Controller, useForm} from "react-hook-form";
 import {DeliveryInfo, DeliveryInfoSchema} from "../../src/schema/checkout.schema";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -74,7 +74,7 @@ export default function DeliveryDetails () {
         />
         <Card.Content style={{gap: 10}}>
           <Controller
-            name="shipping"
+            name="shippingMethod"
             control={control}
             render={({field: {value, onChange}, fieldState: {error, invalid}}) => (
              <View>
