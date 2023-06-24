@@ -1,7 +1,7 @@
 // @ts-nocheck
-import {View, Text, ScrollView} from "react-native";
-import React, {useState} from "react";
-import {Button, Card, Checkbox, TextInput, useTheme} from "react-native-paper";
+import {View, ScrollView} from "react-native";
+import React from "react";
+import {Button, Card, Checkbox, useTheme} from "react-native-paper";
 import {useRouter} from "expo-router";
 import {Controller, useForm} from "react-hook-form";
 import {PaymentInfo, PaymentInfoSchema} from "../../src/schema/checkout.schema";
@@ -22,8 +22,6 @@ export default function PaymentDetails () {
 
   const router = useRouter();
   const theme = useTheme();
-  const [checked, setChecked] = useState(true);
-
 
   const nextPage = () => {
     router.push('/')
