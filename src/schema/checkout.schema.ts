@@ -9,6 +9,7 @@ export const PersonalInfoSchema = z.object({
   confirmPassword: z.string().min(8)
 }).refine(data => data.password === data.confirmPassword, {
   message: 'Passwords do not match',
+  path: ['confirmPassword']
 });
 
 export type PersonalInfo = z.infer<typeof PersonalInfoSchema>;
@@ -35,6 +36,6 @@ export const PaymentInfoSchema = z.object({
 
 export type PaymentInfo = z.infer<typeof PaymentInfoSchema>;
 
-export const CheckoutInfoSchema = PersonalInfoSchema.merge(DeliveryInfoSchema).merge(PaymentInfoSchema);
+export const CheckoutInfoSchema = DeliveryInfoSchema.merge(PersonalInfoSchema).merge(PaymentInfoSchema);
 
 export type CheckoutData = z.infer<typeof CheckoutInfoSchema>
