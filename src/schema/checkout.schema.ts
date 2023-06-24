@@ -18,7 +18,11 @@ export type DeliveryInfo = z.infer<typeof DeliveryInfoSchema>;
 
 export const PaymentInfoSchema = z.object({
   number: z.string().min(1),
-  expirationDate: z.string().regex(/^(0[1-9]|1[0-2])\/\d{4}$/),
+  expirationDate: z.string().regex(/^(0[1-9]|1[0-2])\/\d{4}$/).refine((val) => {
+    const [month, year] = val.split('/');
+    const date = new Date(parseInt(year), parseInt(month) - 1);
+    return date > new Date();
+  }, {message: 'Card is expired'}),
   securityCode: z.coerce.number().gte(100).lte(999),
   saveInfo: z.boolean(),
 });
