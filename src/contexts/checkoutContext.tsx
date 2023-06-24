@@ -8,7 +8,9 @@ type CheckoutContextData = {
 };
 
 const CheckoutContext = createContext<CheckoutContextData>({
-
+  setPersonal: () => {},
+  setDelivery: () => {},
+  setPayment: () => {},
 });
 
 export default function CheckoutContextProvider({children}) {
