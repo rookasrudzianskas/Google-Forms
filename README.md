@@ -12,6 +12,7 @@ npx expo start -c
 localhost:3000
 
 iphone sim
+android sim
 ```
 
 ## 📝 Notes
