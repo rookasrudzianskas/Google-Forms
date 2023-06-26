@@ -10,6 +10,8 @@ npx create-expo-app -e with-router
 npx expo start -c
 
 localhost:3000
+
+iphone sim
 ```
 
 ## 📝 Notes
