@@ -15,6 +15,7 @@ iphone sim
 android sim
 
 web version
+macos app
 ```
 
 ## 📝 Notes
