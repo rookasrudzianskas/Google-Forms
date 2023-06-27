@@ -13,6 +13,8 @@ localhost:3000
 
 iphone sim
 android sim
+
+web version
 ```
 
 ## 📝 Notes
